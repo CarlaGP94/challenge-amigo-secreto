@@ -43,14 +43,12 @@ function verfLista(){
     if (nomAmigos.length == 0){
         agregarAmigo()
     } else {
-        for (i = 0; Math.floor(Math.random()*nomAmigos.length); i++){
-            let nomAzar = [nomAmigos[i]]
-            limpiarCaja('listaAmigos')
-            mostrarNombres('resultado',nomAzar)
+        var nomAzar = [Math.floor(Math.random()*nomAmigos.length)];
             }
         }
     }
 
 function sortearAmigo(){
     verfLista()
+    mostrarNombres('resultado', nomAzar[0])
 }
