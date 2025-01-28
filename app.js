@@ -12,25 +12,25 @@ function agregarAmigo(){
     } else{
         nomAmigos.push(nomIngresado); //  Guarda el nombre en la lista, reestablece el whitebox, muestra la lista al usuario.
         limpiarCaja();
+        mostrarNombres()
     }
     console.log(nomAmigos)
     
 }
+
 
 function limpiarCaja(){
 
     document.getElementById('amigo').value = '';
 }
 
-/* for recorre nomAmigos
-cada elemento lo imprime en el ul id="listaAmigos" como un li cada vez */
 
 function mostrarNombres(){
     
-    //let a = document.getElementById('listaAmigos');
-    //a.innerHTML = "";
+    let listaUL = document.getElementById('listaAmigos');
+    listaUL.innerHTML = "";
 
-    for (let i = 1; i < nomAmigos.length; i++){
+    for (let i = 0; i < nomAmigos.length; i++){
 
         let li = document.createElement('li');
         li.innerHTML += nomAmigos[i]
@@ -43,5 +43,6 @@ function mostrarNombres(){
 
 function sortearAmigo(){
     //
+    Math.floor(Math.random()*nomAmigos.length)
 }
-//console.log(mostrarNombres())
+
