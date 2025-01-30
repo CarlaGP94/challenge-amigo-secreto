@@ -23,11 +23,17 @@ function limpiarCaja(elemento){
 }
 
 
-function mostrarNombres(ul,lista){
+function listaEnBlanco(ul){
     
-    //  Selecciona donde se mostraran los nombres ingresados.
+    //  Esta función se asegura que las etiquetas <ul> estén en blanco.
     let listaUL = document.getElementById(ul);
     listaUL.innerHTML = "";
+}
+
+
+function mostrarNombres(ul,lista){
+    
+    listaEnBlanco(ul)
 
     //  Bucle para agrega <li> por cada nombre ingresado.
     for (let i = 0; i < lista.length; i++){
@@ -38,17 +44,25 @@ function mostrarNombres(ul,lista){
     }
 }
 
-function verfLista(){
-    //
-    if (nomAmigos.length == 0){
-        agregarAmigo()
-    } else {
-        var nomAzar = [Math.floor(Math.random()*nomAmigos.length)];
-            }
-        }
-    }
 
 function sortearAmigo(){
-    verfLista()
-    mostrarNombres('resultado', nomAzar[0])
+    
+    //  Guarda en una lista el ganador del sorteo.
+    let nomAzar = []
+
+    //  Se asegura que haya un nombre ingresado
+    if (nomAmigos.length == 0){
+        agregarAmigo();
+
+    } else { //  Sorteo
+        //  El doble bucle asegura que muestre un nombre y no un error.
+        while (nomAzar == "" || nomAzar == undefined){
+            for (i = 0; Math.floor(Math.random()*nomAmigos.length); i++){
+                nomAzar = [nomAmigos[i]];
+                }
+        }
+    //  Borra la lista de nombres ingresados y solo muestra al ganador.
+    listaEnBlanco('listaAmigos');
+    mostrarNombres('resultado', nomAzar);
+    }
 }
