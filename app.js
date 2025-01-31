@@ -4,8 +4,7 @@
 numAmigos = 0;
 //  Listas:
 nomAmigos = [];
-
-//  Funciones para uso general -> reciben parámetros.
+//  Funciones para uso general -> reciben parámetros:
 function bloquearBotones(boton){
 
     document.getElementById(boton).setAttribute('disabled','true');
@@ -40,7 +39,8 @@ function mostrarNombres(ul,lista){
     }
 }
 
-//  Funciones específicas.
+
+//  Funciones específicas:
 function cantAmigos(){
     
     //  Puede ingresar por única vez, la cantidad de personas por sortear.
@@ -64,6 +64,7 @@ function agregarAmigo(){
     if (numAmigos <= 0) {
         alert('Por favor, ingrese la cantidad de jugadores primero.');
 
+
     //  No podrán ingresar una cadena vacía ni una menor a 3 caracteres.
     } else if (nomIngresado.length < 3){
         alert('Por favor, inserte un nombre de mínimo 3 caracteres.');
@@ -73,15 +74,13 @@ function agregarAmigo(){
         nomAmigos.push(nomIngresado); 
         limpiarCaja('amigo');
         mostrarNombres('listaAmigos',nomAmigos);
-        
-        } 
+    }
 
-    
     //  Una vez que se ingresan los nombres de todos los participantes, se bloquea el whitebox y el botón "añadir".
-    // if (numAmigos == nomAmigos.length){
-    //     bloquearBotones('amigo');
-    //     bloquearBotones('añadir');
-    // }
+    if (numAmigos >= 3 && numAmigos == nomAmigos.length){
+        bloquearBotones('amigo');
+        bloquearBotones('añadir');
+    }
 }
 
 
@@ -106,3 +105,12 @@ function sortearAmigo(){
     mostrarNombres('resultado', nomWin);
     }
 }
+
+/* Errores para trabajar:
+
+crear comparativo para nombres repetidos
+
+controlar el sorteo para que si o si salgan 1 vez c/u de los nombres ingresados (como en el juego del nº secreto)
+
+reiniciar el juego
+*/
