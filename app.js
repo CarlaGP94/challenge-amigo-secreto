@@ -6,20 +6,13 @@
 •
 */
 
+numAmigos = 0;
 nomAmigos = [];
 
 
-function agregarAmigo(){
+function boquearBotones(boton){
 
-    let nomIngresado = document.getElementById('amigo').value; //  Cada nombre ingresado en el whitebox se guarda en la variable.
-
-    if (nomIngresado === "" || nomIngresado.length < 3){
-        alert('Por favor, inserte un nombre de mínimo 3 caracteres.'); //  Evita que se tome una cadena vacía como nombre válido.
-    } else{
-        nomAmigos.push(nomIngresado); //  Guarda el nombre en la lista, reestablece el whitebox, muestra la lista al usuario.
-        limpiarCaja('amigo');
-        mostrarNombres('listaAmigos',nomAmigos);
-    }
+    document.getElementById(boton).setAttribute('disabled','true');
 }
 
 
@@ -35,6 +28,34 @@ function listaEnBlanco(ul){
     //  Esta función se asegura que las listas mostradas en etiquetas <ul> estén en blanco.
     let listaUL = document.getElementById(ul);
     listaUL.innerHTML = "";
+}
+
+
+function cantAmigos(){
+
+    let numAmigos = document.getElementById('cantidad').value;
+    boquearBotones('start');
+    boquearBotones('cantidad');
+    console.log(numAmigos);
+}
+
+
+function agregarAmigo(){
+    
+    let nomIngresado = document.getElementById('amigo').value; //  Cada nombre ingresado en el whitebox se guarda en la variable.
+
+
+    if (nomIngresado === "" || nomIngresado.length < 3){
+        alert('Por favor, inserte un nombre de mínimo 3 caracteres.'); //  Evita que se tome una cadena vacía como nombre válido.
+    } else{
+        nomAmigos.push(nomIngresado); //  Guarda el nombre en la lista, reestablece el whitebox, muestra la lista al usuario.
+        limpiarCaja('amigo');
+        mostrarNombres('listaAmigos',nomAmigos);
+    }
+
+        // boquearBotones('amigo');
+        // boquearBotones('añadir');
+
 }
 
 
@@ -55,7 +76,7 @@ function mostrarNombres(ul,lista){
 function sortearAmigo(){
     
     //  Deshabilita el botón "añadir" una vez presionado el botón "sortear amigo".
-    document.querySelector('#añadir').setAttribute('disabled','true');
+    boquearBotones('añadir');
 
     //  Inicializa array.
     let nomWin = [];
