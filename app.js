@@ -5,7 +5,7 @@ numAmigos = 0;
 //  Listas:
 nomAmigos = [];
 
-
+//  Funciones para uso general -> reciben parámetros.
 function bloquearBotones(boton){
 
     document.getElementById(boton).setAttribute('disabled','true');
@@ -27,40 +27,6 @@ function listaEnBlanco(ul){
 }
 
 
-function cantAmigos(){
-    
-    //  Puede ingresar por única vez, la cantidad de personas por sortear.
-    numAmigos = document.getElementById('cantidad').value;
-    bloquearBotones('start');
-    bloquearBotones('cantidad');
-}
-
-
-function agregarAmigo(){
-    
-    //  Cada nombre ingresado en el whitebox se guarda en la variable.
-    let nomIngresado = document.getElementById('amigo').value; 
-
-    //  Control de filtros: no podrán ingresar una cadena vacía ni una menor a 3 caracteres.
-    if (nomIngresado.length < 3){
-        alert('Por favor, inserte un nombre de mínimo 3 caracteres.'); 
-    } else{
-        nomAmigos.push(nomIngresado); //  Guarda el nombre en la lista, reestablece el whitebox, muestra la lista al usuario.
-        limpiarCaja('amigo');
-        mostrarNombres('listaAmigos',nomAmigos);
-        if (numAmigos == nomAmigos.length){
-            bloquearBotones('amigo');
-            bloquearBotones('añadir');
-    }
-
-    
-    }
-        // nomIngresado === "" || 
-        // 
-
-}
-
-
 function mostrarNombres(ul,lista){
     
     listaEnBlanco(ul);
@@ -74,18 +40,59 @@ function mostrarNombres(ul,lista){
     }
 }
 
+//  Funciones específicas.
+function cantAmigos(){
+    
+    //  Puede ingresar por única vez, la cantidad de personas por sortear.
+    numAmigos = document.getElementById('cantidad').value;
+    
+    //  Cantidad mínima de jugaderes -> 3.
+    if (numAmigos <= 2){
+        alert('Ingrese al menos 3 personas para iniciar.')
+    } else {    
+        bloquearBotones('start');
+        bloquearBotones('cantidad');}
+}
+
+
+function agregarAmigo(){
+
+    //  Cada nombre ingresado en el whitebox se guarda en la variable.
+    let nomIngresado = document.getElementById('amigo').value; 
+
+    //  Debe ingresar primero la cantidad de jugadores, para luego los nombres.
+    if (numAmigos <= 0) {
+        alert('Por favor, ingrese la cantidad de jugadores primero.');
+
+    //  No podrán ingresar una cadena vacía ni una menor a 3 caracteres.
+    } else if (nomIngresado.length < 3){
+        alert('Por favor, inserte un nombre de mínimo 3 caracteres.');
+
+    //  Agrega el nombre en la lista, reestablece el whitebox, muestra la lista de nombres en pantalla.
+    } else{ 
+        nomAmigos.push(nomIngresado); 
+        limpiarCaja('amigo');
+        mostrarNombres('listaAmigos',nomAmigos);
+        
+        } 
+
+    
+    //  Una vez que se ingresan los nombres de todos los participantes, se bloquea el whitebox y el botón "añadir".
+    // if (numAmigos == nomAmigos.length){
+    //     bloquearBotones('amigo');
+    //     bloquearBotones('añadir');
+    // }
+}
+
 
 function sortearAmigo(){
     
-    //  Deshabilita el botón "añadir" una vez presionado el botón "sortear amigo".
-    bloquearBotones('añadir');
-
     //  Inicializa array.
     let nomWin = [];
 
-    //  Corrobora que el array no esté vacío.
-    if (nomAmigos.length == 0){
-        agregarAmigo();
+    //  Corrobora que efectivamente hayan agregado el nº y los nombres de los participantes.
+    if (numAmigos >= 0 && nomAmigos.length == 0){
+        alert('Ingrese al menos 3 personas y luego sus nombres antes de sortear.');
 
     } else { //  Sorteo
         //  1er bucle para evitar que muestre un error - 2do bucle toma un nombre pseudo aleatoreo.
