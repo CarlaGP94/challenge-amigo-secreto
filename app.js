@@ -1,16 +1,12 @@
-//  Este algoritmo logra sortear un nombre para asignar "el amigo secreto" al usuario.
-//  Además de cumplir con las consignas principales, también agregué algunos detalles y mejoras para agregar valor, aquí detallo:
-/*
-• El nombre debe contener mínimo 3 carecteres;
-• Deshabilitar el botón "añadir" una vez oprimido el botón "sortear amigo" para que no puedan ingresar más nombres una vez iniciado el sorteo.
-•
-*/
+//  Algoritmo.
 
+//  Variables:
 numAmigos = 0;
+//  Listas:
 nomAmigos = [];
 
 
-function boquearBotones(boton){
+function bloquearBotones(boton){
 
     document.getElementById(boton).setAttribute('disabled','true');
 }
@@ -32,29 +28,35 @@ function listaEnBlanco(ul){
 
 
 function cantAmigos(){
-
-    let numAmigos = document.getElementById('cantidad').value;
-    boquearBotones('start');
-    boquearBotones('cantidad');
-    console.log(numAmigos);
+    
+    //  Puede ingresar por única vez, la cantidad de personas por sortear.
+    numAmigos = document.getElementById('cantidad').value;
+    bloquearBotones('start');
+    bloquearBotones('cantidad');
 }
 
 
 function agregarAmigo(){
     
-    let nomIngresado = document.getElementById('amigo').value; //  Cada nombre ingresado en el whitebox se guarda en la variable.
+    //  Cada nombre ingresado en el whitebox se guarda en la variable.
+    let nomIngresado = document.getElementById('amigo').value; 
 
-
-    if (nomIngresado === "" || nomIngresado.length < 3){
-        alert('Por favor, inserte un nombre de mínimo 3 caracteres.'); //  Evita que se tome una cadena vacía como nombre válido.
+    //  Control de filtros: no podrán ingresar una cadena vacía ni una menor a 3 caracteres.
+    if (nomIngresado.length < 3){
+        alert('Por favor, inserte un nombre de mínimo 3 caracteres.'); 
     } else{
         nomAmigos.push(nomIngresado); //  Guarda el nombre en la lista, reestablece el whitebox, muestra la lista al usuario.
         limpiarCaja('amigo');
         mostrarNombres('listaAmigos',nomAmigos);
+        if (numAmigos == nomAmigos.length){
+            bloquearBotones('amigo');
+            bloquearBotones('añadir');
     }
 
-        // boquearBotones('amigo');
-        // boquearBotones('añadir');
+    
+    }
+        // nomIngresado === "" || 
+        // 
 
 }
 
@@ -76,7 +78,7 @@ function mostrarNombres(ul,lista){
 function sortearAmigo(){
     
     //  Deshabilita el botón "añadir" una vez presionado el botón "sortear amigo".
-    boquearBotones('añadir');
+    bloquearBotones('añadir');
 
     //  Inicializa array.
     let nomWin = [];
