@@ -1,4 +1,10 @@
-// El principal objetivo de este desafío es fortalecer tus habilidades en lógica de programación. Aquí deberás desarrollar la lógica para resolver el problema.
+//  Este algoritmo logra sortear un nombre para asignar "el amigo secreto" al usuario.
+//  Además de cumplir con las consignas principales, también agregué algunos detalles y mejoras para agregar valor, aquí detallo:
+/*
+• El nombre debe contener mínimo 3 carecteres;
+• Deshabilitar el botón "añadir" una vez oprimido el botón "sortear amigo" para que no puedan ingresar más nombres una vez iniciado el sorteo.
+•
+*/
 
 nomAmigos = [];
 
@@ -7,8 +13,8 @@ function agregarAmigo(){
 
     let nomIngresado = document.getElementById('amigo').value; //  Cada nombre ingresado en el whitebox se guarda en la variable.
 
-    if (nomIngresado === ""){
-        alert('Por favor, inserte un nombre.'); //  Evita que se tome una cadena vacía como nombre válido.
+    if (nomIngresado === "" || nomIngresado.length < 3){
+        alert('Por favor, inserte un nombre de mínimo 3 caracteres.'); //  Evita que se tome una cadena vacía como nombre válido.
     } else{
         nomAmigos.push(nomIngresado); //  Guarda el nombre en la lista, reestablece el whitebox, muestra la lista al usuario.
         limpiarCaja('amigo');
@@ -19,13 +25,14 @@ function agregarAmigo(){
 
 function limpiarCaja(elemento){
 
+    //  Esta función limpia el whitebox.
     document.getElementById(elemento).value = '';
 }
 
 
 function listaEnBlanco(ul){
     
-    //  Esta función se asegura que las etiquetas <ul> estén en blanco.
+    //  Esta función se asegura que las listas mostradas en etiquetas <ul> estén en blanco.
     let listaUL = document.getElementById(ul);
     listaUL.innerHTML = "";
 }
@@ -33,7 +40,7 @@ function listaEnBlanco(ul){
 
 function mostrarNombres(ul,lista){
     
-    listaEnBlanco(ul)
+    listaEnBlanco(ul);
 
     //  Bucle para agrega <li> por cada nombre ingresado.
     for (let i = 0; i < lista.length; i++){
@@ -47,22 +54,25 @@ function mostrarNombres(ul,lista){
 
 function sortearAmigo(){
     
-    //  Guarda en una lista el ganador del sorteo.
-    let nomAzar = []
+    //  Deshabilita el botón "añadir" una vez presionado el botón "sortear amigo".
+    document.querySelector('#añadir').setAttribute('disabled','true');
 
-    //  Se asegura que haya un nombre ingresado
+    //  Inicializa array.
+    let nomWin = [];
+
+    //  Corrobora que el array no esté vacío.
     if (nomAmigos.length == 0){
         agregarAmigo();
 
     } else { //  Sorteo
-        //  El doble bucle asegura que muestre un nombre y no un error.
-        while (nomAzar == "" || nomAzar == undefined){
+        //  1er bucle para evitar que muestre un error - 2do bucle toma un nombre pseudo aleatoreo.
+        while (nomWin == "" || nomWin == undefined){
             for (i = 0; Math.floor(Math.random()*nomAmigos.length); i++){
-                nomAzar = [nomAmigos[i]];
+                nomWin = [nomAmigos[i]];
                 }
         }
     //  Borra la lista de nombres ingresados y solo muestra al ganador.
     listaEnBlanco('listaAmigos');
-    mostrarNombres('resultado', nomAzar);
+    mostrarNombres('resultado', nomWin);
     }
 }
