@@ -1,9 +1,10 @@
 //  Algoritmo.
 
 //  Variables:
-numAmigos = 0;
+let numAmigos = 0;
+let nomIngresado = "";
 //  Listas:
-nomAmigos = [];
+nombreAmigos = [];
 //  Funciones para uso general -> reciben parámetros:
 function bloquearBotones(boton){
 
@@ -58,7 +59,7 @@ function cantAmigos(){
 function agregarAmigo(){
 
     //  Cada nombre ingresado en el whitebox se guarda en la variable.
-    let nomIngresado = document.getElementById('amigo').value; 
+    nomIngresado = document.getElementById('amigo').value; 
 
     //  Debe ingresar primero la cantidad de jugadores, para luego los nombres.
     if (numAmigos <= 0) {
@@ -69,15 +70,19 @@ function agregarAmigo(){
     } else if (nomIngresado.length < 3){
         alert('Por favor, inserte un nombre de mínimo 3 caracteres.');
 
+    //  Verifica que no se repitan los nombres, por el posible error de una equivocación en el tipeo del usuario o que hayan dos personas o más del mismo nombre y sean diferenciados a la hora del sorteo.
+    } else if (nombreAmigos.includes(nomIngresado)){
+        alert('Este nombre está repetido, por favor ingresa el apodo o el apellido de esta persona u otro nombre.');
+
     //  Agrega el nombre en la lista, reestablece el whitebox, muestra la lista de nombres en pantalla.
     } else{ 
-        nomAmigos.push(nomIngresado); 
+        nombreAmigos.push(nomIngresado); 
         limpiarCaja('amigo');
-        mostrarNombres('listaAmigos',nomAmigos);
+        mostrarNombres('listaAmigos',nombreAmigos);
     }
 
     //  Una vez que se ingresan los nombres de todos los participantes, se bloquea el whitebox y el botón "añadir".
-    if (numAmigos >= 3 && numAmigos == nomAmigos.length){
+    if (numAmigos >= 3 && numAmigos == nombreAmigos.length){
         bloquearBotones('amigo');
         bloquearBotones('añadir');
     }
@@ -87,28 +92,37 @@ function agregarAmigo(){
 function sortearAmigo(){
     
     //  Inicializa array.
-    let nomWin = [];
+    nomWin = [];
 
-    //  Corrobora que efectivamente hayan agregado el nº y los nombres de los participantes.
-    if (numAmigos >= 0 && nomAmigos.length == 0){
+    //  Corrobora que hayan ingresado los datos correspondientes y no estén en cero.
+    if (numAmigos >= 0 && nombreAmigos.length == 0){
         alert('Ingrese al menos 3 personas y luego sus nombres antes de sortear.');
+
+        //  En caso que la cantidad de partiipantes no coincida con la cantidad de nombres ingresados.
+    } else if (numAmigos > nombreAmigos.length){ 
+        alert("Ingrese los nombres de todos los participantes para inciar el sorteo.")
 
     } else { //  Sorteo
         //  1er bucle para evitar que muestre un error - 2do bucle toma un nombre pseudo aleatoreo.
-        while (nomWin == "" || nomWin == undefined){
-            for (i = 0; Math.floor(Math.random()*nomAmigos.length); i++){
-                nomWin = [nomAmigos[i]];
-                }
-        }
-    //  Borra la lista de nombres ingresados y solo muestra al ganador.
-    listaEnBlanco('listaAmigos');
-    mostrarNombres('resultado', nomWin);
+            while (nomWin == "" || nomWin == undefined){
+                for (let i = 0; Math.floor(Math.random()*nombreAmigos.length); i++){
+                    nomWin = [nombreAmigos[i]];
+                    }
+            }
+            //  Borra la lista de nombres ingresados y solo muestra al ganador.
+            listaEnBlanco('listaAmigos');
+            mostrarNombres('resultado', nomWin);
     }
+
+    if (nombreAmigos.includes(nomWin[0])){
+        
+        console.log(nomWin)
+    }
+
+    console.log(nombreAmigos)
 }
 
 /* Errores para trabajar:
-
-crear comparativo para nombres repetidos
 
 controlar el sorteo para que si o si salgan 1 vez c/u de los nombres ingresados (como en el juego del nº secreto)
 
