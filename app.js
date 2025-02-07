@@ -12,6 +12,12 @@ function bloquearBotones(boton){
 }
 
 
+function desbloquearBotones(boton){
+
+    document.getElementById(boton).setAttribute('disabled', false);
+}
+
+
 function limpiarCaja(elemento){
 
     //  Esta función limpia el whitebox.
@@ -49,10 +55,11 @@ function cantAmigos(){
     
     //  Cantidad mínima de jugaderes -> 3.
     if (numAmigos <= 2){
-        alert('Ingrese al menos 3 personas para iniciar.')
+        alert('Ingrese al menos 3 personas para iniciar.');
     } else {    
         bloquearBotones('start');
-        bloquearBotones('cantidad');}
+        bloquearBotones('cantidad');
+    }
 }
 
 
@@ -89,42 +96,67 @@ function agregarAmigo(){
 }
 
 
-function sortearAmigo(){
-    
-    //  Inicializa array.
+function sorteoAleatorio(){
+
     nomWin = [];
 
+        //  Sorteo: toma un nombre de manera pseudo aleatoria del array.
+        while (nomWin == "" || nomWin == undefined){
+            for (let i = 0; Math.floor(Math.random()*nombreAmigos.length); i++){
+                nomWin = [nombreAmigos[i]];
+                }
+            
+            //  Si todos los elementos son una cadena vacía, quiere decir que ya se sortearon todos los nombres. Por ende, finaliza el sorteo.
+            if (nombreAmigos.every(elemento => elemento === "")){
+                nomWin[0] = "Ya se sortearon todos los nombres.";
+                mostrarNombres('resultado', nomWin);
+                bloquearBotones('sortear');
+                break;
+            }
+        }
+        //  Borra la lista de nombres ingresados y solo muestra al ganador.
+        listaEnBlanco('listaAmigos');
+        mostrarNombres('resultado', nomWin);
+
+    return nomWin[0];
+}
+
+
+function verificadorSorteo(){
+
+    //  El sorteo pasará por el filtro del verificador para asegurarse que todos los nombres ingresados se salgan una única vez.
+    sorteoAleatorio();
+
+    //  Toma el return de la función para guardar el nombre sorteado en una variable.
+    const nombre = sorteoAleatorio();
+
+    //  La nueva variable alberga el nº de índice donde se encuentra el nombre sorteado.
+    const numIndice = nombreAmigos.indexOf(nombre);
+
+    //  Se reemplaza su valor por una cadena vacía para que el nombre solo salga 1 vez.
+    nombreAmigos[numIndice] = "";
+}
+
+
+function sortearAmigo(){
+    
     //  Corrobora que hayan ingresado los datos correspondientes y no estén en cero.
     if (numAmigos >= 0 && nombreAmigos.length == 0){
         alert('Ingrese al menos 3 personas y luego sus nombres antes de sortear.');
 
-        //  En caso que la cantidad de partiipantes no coincida con la cantidad de nombres ingresados.
+    //  En caso que la cantidad de partiipantes no coincida con la cantidad de nombres ingresados.
     } else if (numAmigos > nombreAmigos.length){ 
-        alert("Ingrese los nombres de todos los participantes para inciar el sorteo.")
+        alert("Ingrese los nombres de todos los participantes para inciar el sorteo.");
 
-    } else { //  Sorteo
-        //  1er bucle para evitar que muestre un error - 2do bucle toma un nombre pseudo aleatoreo.
-            while (nomWin == "" || nomWin == undefined){
-                for (let i = 0; Math.floor(Math.random()*nombreAmigos.length); i++){
-                    nomWin = [nombreAmigos[i]];
-                    }
-            }
-            //  Borra la lista de nombres ingresados y solo muestra al ganador.
-            listaEnBlanco('listaAmigos');
-            mostrarNombres('resultado', nomWin);
+    } else {
+        verificadorSorteo();
     }
-
-    if (nombreAmigos.includes(nomWin[0])){
-        
-        console.log(nomWin)
-    }
-
-    console.log(nombreAmigos)
 }
 
-/* Errores para trabajar:
+function reinicio(){
+    //  F5
+    window.location.reload()
+}
 
-controlar el sorteo para que si o si salgan 1 vez c/u de los nombres ingresados (como en el juego del nº secreto)
 
-reiniciar el juego
-*/
+//  Fin del algoritmo.
