@@ -5,7 +5,7 @@
 
 - Carla Pasandi
 
-## ¡Prepárense para la diversión!
+## Sobre el Sorteador de amigo secreto
 
 ¿Listos para llevar su juego de "Amigo Secreto" al siguiente nivel? Olvídense de los papelitos y las complicaciones. Con este sorteador online, la emoción y la sorpresa están garantizadas.
 
@@ -22,12 +22,9 @@
 
 <h2 align= "center">¡Vamos a verlo!</h2>
 
-![Pag principal](https://github.com/user-attachments/assets/22778215-022b-48de-98bb-a9bf21838d88)
 
+## :hammer:Características del proyecto
 
-## Diseño atractivo
-He creado una página con un diseño moderno y divertido, utilizando colores vibrantes y elementos visuales que invitan a jugar.
-## Interfaz amigable
-La página es fácil de navegar y entender, incluso para aquellos que nunca han usado un sorteador online.
-## Instrucciones claras 
-He incluido instrucciones sencillas en cada paso para que el proceso sea rápido y sin complicaciones.
+- `Diseño atractivo`: Diseño moderno y divertido, utilizando colores vibrantes y elementos visuales que invitan a jugar.
+- `Interfaz amigable`: La página es fácil de navegar y entender, incluso para aquellos que nunca han usado un sorteador online.
+- `Instrucciones claras`: He incluido instrucciones sencillas en cada paso para que el proceso sea rápido y sin complicaciones.
