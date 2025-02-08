@@ -1,11 +1,33 @@
-*<h1 align= "center">Amigo Secreto</h1>*
+![Portada con el título del sorteador e imagen explicativa](https://github.com/user-attachments/assets/9485b551-71e0-4898-a8bd-2f2cdefcf2fb)
+
 
 ## Programadora:
 
 - Carla Pasandi
 
-## Explicacion:
+## ¡Prepárense para la diversión!
 
-- El juego "amigo secreto" se basa en dar un regalo a una persona del grupo al azar y viceversa, recibir un regalo de un x; para luego adivinar quién fue. Así todos los integrantes del grupo reciben un regalo.
-- Este algoritmo se encargará de hacer el sorteo de nombres para cada miembro del grupo. Para ello, primero se debe ingresar la cantidad de personas a sortear, para luego ingresar los nombres.
-- Cada persona tendrá su turno para el sorteo, la persona adjudicada figurará en pantalla.
+¿Listos para llevar su juego de "Amigo Secreto" al siguiente nivel? Olvídense de los papelitos y las complicaciones. Con este sorteador online, la emoción y la sorpresa están garantizadas.
+
+¿Cómo funciona?
+
+- Ingresen los nombres: Simplemente introduzcan los nombres de los participantes y nuestro algoritmo hará la magia.
+- Descubran a su amigo secreto: Cada persona tendrá su turno para revelar a quién le toca regalar. ¡La identidad de tu amigo secreto se mostrará en pantalla!
+
+¿Por qué usar este sorteador?
+
+- Fácil y rápido: ¡Dile adiós a los sorteos manuales! En segundos tendrás todo listo.
+- Seguro y confiable: Nuestro algoritmo asegura un sorteo justo y aleatorio. ¡Sin trampas!
+- Divertido y emocionante: La revelación en pantalla añade un toque de emoción y suspenso.
+
+<h2 align= "center">¡Vamos a verlo!</h2>
+
+![Pag principal](https://github.com/user-attachments/assets/22778215-022b-48de-98bb-a9bf21838d88)
+
+
+## Diseño atractivo
+He creado una página con un diseño moderno y divertido, utilizando colores vibrantes y elementos visuales que invitan a jugar.
+## Interfaz amigable
+La página es fácil de navegar y entender, incluso para aquellos que nunca han usado un sorteador online.
+## Instrucciones claras 
+He incluido instrucciones sencillas en cada paso para que el proceso sea rápido y sin complicaciones.
