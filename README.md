@@ -37,9 +37,29 @@
 
 ## :exclamation: Veamos un pequeño ejemplo
 
+https://github.com/user-attachments/assets/8691acb8-65b6-4c03-a550-f11bc6400b00
 
+## :memo: A tener en cuenta: datos input
 
-https://github.com/user-attachments/assets/33ef6bc1-dd98-4bc5-b540-ae0f26afa618
+- Para iniciar el sorteo, el primer dato entrante será la cantidad de personas (mínimo 3). La carga de este dato, se confirmará al presionar botón "Agregar".
+- El segundo dato entrante es el nombre de cada uno de los paricipantes, y en este punto cabe destacar sus características:
+  - Cada nombre tendrá un mínimo de 3 caracteres; admite letras, números y símbolos.
+  - Para confirmar la carga, solo bastará con presionar el 2do botón de "Agregar".
+  - En caso de existir un nombre repetido, el algoritno no permitirá que se agregue a la lista, en cambio sugerirá al usuario poner un apellido, apodo u otro nombre.
+  - La lista de nombres se irá mostrando en pantalla a medida que los mismo se vayan ingresando.
+  - Se deberá ingresar la misma cantidad de nombres que el número pactado en el paso anterior.
+- Una vez completadas las condiciones principales, se bloquearán tanto los botones de "Añadir" como los whitebox.
+  - Esto evitará que se agreguen nombres de más, a la misma persona varias veces, o lo contrario, alguno quede fuera del sorteo.
 
+## :four_leaf_clover: ¡Sorteo!
 
+- Al presionar el botón "Sortear amigo", el algortimo tomará de forma aleatoria un nombre y lo mostrará en pantalla:
+  - Cada nombre podrá salir sorteado una única vez para evitar que a dos personas distintas les toque el mismo amigo secreto.
+  - Una vez sorteados todos los nombres, la pantalla mostrará el mensaje correspondiente.
 
+## :arrows_clockwise: Botón de reinicio
+
+- Es posible reiniciar el sorteo en cualquier momento gracias al botón "Nuevo sorteo", la pantalla vuelve a las condiciones iniciales:
+  - Sea porque hubo un error de tipeo en el nº o los nombres;
+  - Porque es necesario un nuevo sorteo,
+  - Etc.
